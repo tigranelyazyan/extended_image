@@ -10,6 +10,7 @@ class EditActionDetails {
   Rect? get layoutRect => _layoutRect;
   Rect? _screenDestinationRect;
   Rect? _rawDestinationRect;
+  Rect? initialCropRect;
 
   double totalScale = 1.0;
   double preTotalScale = 1.0;
@@ -659,6 +660,7 @@ class EditActionDetails {
     double? cropAspectRatio,
     double? rotateRadians,
     double? rotationYRadians,
+    Rect? initialCropRect,
   }) {
     return EditActionDetails()
       .._layoutRect = layoutRect ?? _layoutRect
@@ -674,6 +676,7 @@ class EditActionDetails {
       ..cropAspectRatio = cropAspectRatio ?? _cropAspectRatio
       ..rotateRadians = rotateRadians ?? this.rotateRadians
       ..rotationYRadians = rotationYRadians ?? this.rotationYRadians
+      ..initialCropRect = initialCropRect ?? this.initialCropRect
       ..config = config;
   }
 
