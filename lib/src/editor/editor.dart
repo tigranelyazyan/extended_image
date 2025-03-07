@@ -289,17 +289,17 @@ class ExtendedImageEditorState extends State<ExtendedImageEditor>
           alignment is! Alignment ? Directionality.of(context) : null;
       final Alignment resolvedAlignment = alignment.resolve(textDirection);
       final Rect destinationRect = getDestinationRect(
-          rect: layoutRect,
-          inputSize: Size(
-              widget.extendedImageState.extendedImageInfo!.image.width
-                  .toDouble(),
-              widget.extendedImageState.extendedImageInfo!.image.height
-                  .toDouble()),
-          flipHorizontally: false,
-          fit: widget.extendedImageState.imageWidget.fit,
-          centerSlice: widget.extendedImageState.imageWidget.centerSlice,
-          alignment: resolvedAlignment,
-          scale: widget.extendedImageState.extendedImageInfo!.scale);
+        rect: _editActionDetails?.config?.initialCropRect ?? layoutRect,
+        inputSize: Size(
+            widget.extendedImageState.extendedImageInfo!.image.width.toDouble(),
+            widget.extendedImageState.extendedImageInfo!.image.height
+                .toDouble()),
+        flipHorizontally: false,
+        fit: widget.extendedImageState.imageWidget.fit,
+        centerSlice: widget.extendedImageState.imageWidget.centerSlice,
+        alignment: resolvedAlignment,
+        scale: widget.extendedImageState.extendedImageInfo!.scale,
+      );
 
       Rect cropRect = _initCropRect(destinationRect);
       initCropRectType ??= _editorConfig!.initCropRectType;
