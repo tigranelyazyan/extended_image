@@ -36,11 +36,14 @@ class EditorConfig {
     this.hitTestBehavior = HitTestBehavior.deferToChild,
     this.editActionDetailsIsChanged,
     this.reverseMousePointerScrollDirection = false,
+    this.initialCropRect,
     this.controller,
   })  : assert(lineHeight > 0.0),
         assert(hitTestSize >= 0.0),
         assert(maxScale > 0.0),
         assert(speed > 0.0);
+
+  Rect? initialCropRect;
 
   /// Callback triggered when `EditActionDetails` is changed.
   final EditActionDetailsIsChanged? editActionDetailsIsChanged;
