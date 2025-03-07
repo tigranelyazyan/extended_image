@@ -22,13 +22,19 @@ part 'image_editor_controller.dart';
 ///
 
 class ExtendedImageEditor extends StatefulWidget {
-  ExtendedImageEditor({required this.extendedImageState, Key? key})
-      : assert(extendedImageState.imageWidget.fit == BoxFit.contain,
+  ExtendedImageEditor({
+    required this.extendedImageState,
+    this.initialCropRect,
+    Key? key,
+  })  : assert(extendedImageState.imageWidget.fit == BoxFit.contain,
             'Make sure the image is all painted to crop,the fit of image must be BoxFit.contain'),
         assert(extendedImageState.imageWidget.image is ExtendedImageProvider,
             'Make sure the image provider is ExtendedImageProvider, we will get raw image data from it'),
         super(key: key);
   final ExtendedImageState extendedImageState;
+
+  final Rect? initialCropRect;
+
   @override
   ExtendedImageEditorState createState() => ExtendedImageEditorState();
 }
@@ -289,7 +295,7 @@ class ExtendedImageEditorState extends State<ExtendedImageEditor>
           alignment is! Alignment ? Directionality.of(context) : null;
       final Alignment resolvedAlignment = alignment.resolve(textDirection);
       final Rect destinationRect = getDestinationRect(
-        rect: _editActionDetails?.config?.initialCropRect ?? layoutRect,
+        rect: widget.initialCropRect ?? layoutRect,
         inputSize: Size(
             widget.extendedImageState.extendedImageInfo!.image.width.toDouble(),
             widget.extendedImageState.extendedImageInfo!.image.height

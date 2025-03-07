@@ -58,12 +58,15 @@ class ExtendedImage extends StatefulWidget {
     this.isAntiAlias = false,
     this.handleLoadingProgress = false,
     this.layoutInsets = EdgeInsets.zero,
+    this.initialCropRect,
   })  : assert(constraints == null || constraints.debugAssertIsValid()),
         constraints = (width != null || height != null)
             ? constraints?.tighten(width: width, height: height) ??
                 BoxConstraints.tightFor(width: width, height: height)
             : constraints,
         super(key: key);
+
+  Rect? initialCropRect;
 
   /// Creates a widget that displays an [ImageStream] obtained from an asset
   /// bundle. The key for the image is given by the `name` argument.
@@ -1166,6 +1169,7 @@ class _ExtendedImageState extends State<ExtendedImage>
       current = ExtendedImageEditor(
         extendedImageState: this,
         key: widget.extendedImageEditorKey,
+        initialCropRect: widget.initialCropRect,
       );
     } else {
       current = _buildExtendedRawImage();
