@@ -15,7 +15,7 @@ environment:
   flutter: ">=3.24.1"
 
 dependencies:
-  extended_image_library: ^5.0.0
+  extended_image_library: ^4.0.1
   flutter:
     sdk: flutter
   meta: ^1.7.0
